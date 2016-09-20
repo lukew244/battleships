@@ -1,3 +1,3 @@
 function Ship(){
-  this.position = [];
+  this.position = [1, 1];
 }
