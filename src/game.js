@@ -1,8 +1,13 @@
+(function(exports){
+
 function Game() {
   this.ships = [];
   this.map = new Map();
 }
 
+Game.prototype.start = function() {
+  drawMap(this.map);
+};
 
 Game.prototype.create = function() {
   var ship = new Ship();
@@ -11,7 +16,7 @@ Game.prototype.create = function() {
 
 Game.prototype.plotShips = function() {
   game = this;
-  for(i = 0; i < this.ships.length; i++) {
+  for(var i = 0; i < this.ships.length; i++) {
     var ship = this.ships[i];
     game.generateShipPosition(ship);
     this.map.array[ship.position[0]][ship.position[1]] = 'x';
@@ -28,3 +33,7 @@ Game.prototype.generateCoordinate = function() {
   return Math.floor((Math.random() * 10));
 
 };
+
+
+exports.Game = Game;
+})(this);
