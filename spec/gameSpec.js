@@ -15,7 +15,7 @@ describe("Game", function() {
   it('plots ships on the grid', function(){
     game.create(ship);
     game.plotShips();
-    expect(game.map.array[1]).toContain('x');
+    expect(game.map.grid[1]).toContain('x');
 
   });
 });
