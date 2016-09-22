@@ -14,7 +14,6 @@ Game.prototype.start = function() {
   this.createShips();
   this.plotShips();
   drawMap(this.map);
-  console.log(this.map);
 };
 
 Game.prototype.createShips = function() {
@@ -41,11 +40,8 @@ Game.prototype.plotShips = function() {
 };
 
 Game.prototype.generateShipPosition = function(ship) {
-
-  // while (invalidCoordinate() === true) {
   ship.position[0] = this.generateCoordinate(ship);
   ship.position[1] = this.generateCoordinate(ship);
-  // }
 };
 
 Game.prototype.plotToGrid = function(ship) {
@@ -65,10 +61,22 @@ Game.prototype.plotShipBody = function(ship) {
   }
 };
 
+game.prototype.processAttack = function() {
+  var y = game.randomCoordinate();
+  var x = game.randomCoordinate();
+  this.map.grid[y][x] = '!';
+  displayHit(y, x);
+};
+
+
 
 Game.prototype.generateCoordinate = function(ship) {
-  var shipStart = Math.floor((Math.random() * 10));
+  var shipStart = this.randomCoordinate();
   return (invalidCoordinate(ship, shipStart) === true) ? this.generateCoordinate(ship) : shipStart;
+};
+
+Game.prototype.randomCoordinate = function() {
+  return Math.floor((Math.random() * 10));
 };
 
 function invalidCoordinate(ship, shipStart) {
